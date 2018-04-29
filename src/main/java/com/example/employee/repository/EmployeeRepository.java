@@ -28,7 +28,7 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
 
     //5.查找**的所在的公司的公司名称
     @Query("SELECT c.companyName from Company c LEFT join Employee e on e.companyId = c.id where e.name = ?1")
-    String findByCompany(String name);
+    String findCompanyNameByEmployeeName(String name);
 
     //6.将*的名字改成*,输出这次修改影响的行数
     @Modifying
