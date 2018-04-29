@@ -83,7 +83,7 @@ public class EmployeeJPATest {
         //6.将xiaohong的名字改成xiaobai,输出这次修改影响的行数
         Integer expectedLine = 1;
         //Integer actualLine = employeeRepository.updateEmployeeName("xiaohong","xiaobai");
-        Integer actualLine = employeeRepository.updateName("xiaohong","xiaobai");
+        Integer actualLine = employeeRepository.updateEmployeeName("xiaohong","xiaobai");
         assertThat(actualLine).isEqualTo(expectedLine);
     }
 
