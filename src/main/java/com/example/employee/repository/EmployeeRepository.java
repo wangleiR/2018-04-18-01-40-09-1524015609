@@ -30,7 +30,7 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
 
     //6.将*的名字改成*,输出这次修改影响的行数
     @Modifying
-    @Query("update Employee e set e.name = ?1 where e.name = ?2")
+    @Query("update Employee e set e.name = ?2 where e.name = ?1")
     int updateEmployeeName(String oldName,String newName);
 
     //7.删除姓名是*的employee
