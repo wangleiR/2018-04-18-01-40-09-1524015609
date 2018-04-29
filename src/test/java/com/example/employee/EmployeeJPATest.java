@@ -31,7 +31,6 @@ public class EmployeeJPATest {
     public void setUp() throws Exception {
         //本地启动mysql，创建employee_db数据库
         Flyway flyway = new Flyway();
-        //flyway.setDataSource("jdbc:mysql://localhost:3306/employee_db?useSSL=true","root","root");
         flyway.setDataSource("jdbc:mysql://localhost:3306/employee_db","root","root");
         flyway.clean();
         flyway.migrate();
@@ -57,7 +56,6 @@ public class EmployeeJPATest {
         //3.找出一个薪资最高且公司ID是1的雇员以及该雇员的name
         Employee expectedEmployee = new Employee("xiaohong",19,"female",7000,1, 1);
         String actualName = employeeRepository.findEmployee(1);
-        //String actualName = employeeRepository.findEmployee(1);
         assertThat(actualName).isEqualTo(expectedEmployee.getName());
     }
 
@@ -73,7 +71,6 @@ public class EmployeeJPATest {
     public void should_return_company_name_when_input_employee_name() throws Exception {
         //5.查找xiaohong的所在的公司的公司名称
         String expectedCompanyName = "alibaba";
-       // String actualCompanyName = employeeRepository.findByCompany("xiaohong");
         String actualCompanyName = employeeRepository.findCompanyNameByEmployeeName("xiaohong");
         assertThat(actualCompanyName).isEqualTo(expectedCompanyName);
     }
@@ -82,8 +79,7 @@ public class EmployeeJPATest {
     public void should_return_influence_lines_when_update_employee_name() throws Exception {
         //6.将xiaohong的名字改成xiaobai,输出这次修改影响的行数
         Integer expectedLine = 1;
-        //Integer actualLine = employeeRepository.updateEmployeeName("xiaohong","xiaobai");
-        Integer actualLine = employeeRepository.updateEmployeeName("xiaohong","xiaobai");
+        Integer actualLine = employeeRepository.updateName("xiaohong","xiaobai");
         assertThat(actualLine).isEqualTo(expectedLine);
     }
 
